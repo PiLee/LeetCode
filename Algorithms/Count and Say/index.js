@@ -6,23 +6,29 @@ var countAndSay = function(n) {
     if(n<=1) return "1";
     var round=0;
     var str="1";
-    var result="";
-    str+=str[0]+str[0];
-	while(round<n){
-		var count=1;
-		for(var i=1;i<str.length;i++){
-			if(str[i]===str[i+1]){
-				count++;
-				str+=count+str[i];
-			}else{
-				str+=result;
-				count=1;
-			}
-		}
-		round++;
+	while(++round<n){
+        str=solution(str);
 	}
 	return str;
 };
 
-var n=3;
+function solution(str){
+    var count=1;
+    var result="";
+    if(str.length!==1){
+    	for(var i=0;i<str.length;i++){
+    		if(str[i]===str[i+1]){
+    			count++;
+    		}else{
+    			result+=count+str[i];
+    			count=1;
+    		}
+    	}
+    }else{
+        result=count+str[0];
+    }
+	return result;
+}
+
+var n=6;
 console.log(countAndSay(n));
